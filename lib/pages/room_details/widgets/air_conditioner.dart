@@ -180,19 +180,7 @@ class _AirConditionerState extends State<AirConditioner>
               ),
             ),
             SizedBox(height: 20.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _buildTemperatureLabel(12, isActive),
-                  _buildTemperatureLabel(16, isActive),
-                  _buildTemperatureLabel(20, isActive),
-                  _buildTemperatureLabel(24, isActive),
-                  _buildTemperatureLabel(28, isActive),
-                ],
-              ),
-            ),
+            _buildScale(),
             Container(
               height: 40.0,
               child: FlutterSlider(
@@ -246,7 +234,22 @@ class _AirConditionerState extends State<AirConditioner>
     );
   }
 
-  Widget _buildTemperatureLabel(int value, bool isActive) {
+  Widget _buildScale() {
+    List<Widget> children = [];
+    for (var i = 12; i <= 28; i += 4) {
+      children.add(_buildTemperatureLabel(i));
+    }
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: children,
+      ),
+    );
+  }
+
+  Widget _buildTemperatureLabel(int value) {
     return Column(
       children: <Widget>[
         Row(
@@ -256,7 +259,7 @@ class _AirConditionerState extends State<AirConditioner>
               value.toString(),
               style: TextStyle(
                 fontSize: 16.0,
-                color: (isActive)
+                color: (widget.isActive)
                     ? Colors.white
                     : Color.fromRGBO(196, 212, 228, 1),
               ),
@@ -265,7 +268,7 @@ class _AirConditionerState extends State<AirConditioner>
               '°C',
               style: TextStyle(
                 fontSize: 13.0,
-                color: (isActive)
+                color: (widget.isActive)
                     ? Colors.white
                     : Color.fromRGBO(196, 212, 228, 1),
               ),
@@ -276,7 +279,9 @@ class _AirConditionerState extends State<AirConditioner>
         Container(
           width: 1.0,
           height: 8.0,
-          color: (isActive) ? Colors.white : Color.fromRGBO(196, 212, 228, 1),
+          color: (widget.isActive)
+              ? Colors.white
+              : Color.fromRGBO(196, 212, 228, 1),
         ),
       ],
     );
