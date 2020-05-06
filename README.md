@@ -1,16 +1,11 @@
-# smart_house
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Smart House Application UI - Flutter UI Challenge
 
-A few resources to get you started if this is your first Flutter project:
+Based on app design on [https://www.uplabs.com/](https://www.uplabs.com/posts/smart-home-application-de08c9e0-456b-4eaa-aa4e-24559dfa1131) by  [Nishad Narayanan](https://www.uplabs.com/nishad_kp)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<img src="home.png" width="25%" >
+<img src="details.png" width="25%" >
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
