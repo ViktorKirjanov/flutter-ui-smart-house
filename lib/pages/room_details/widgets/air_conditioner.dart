@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:smart_house/pages/room_details/widgets/reveal.dart';
 import 'package:smart_house/pages/widgets/custom_switch.dart';
 import 'package:smart_house/presentation/smart_house_icons.dart';
@@ -25,7 +26,7 @@ class _AirConditionerState extends State<AirConditioner>
   AnimationController _controller;
   bool _deviceStatuce;
 
-  int _value = 10;
+  double _value = 23;
 
   @override
   void initState() {
@@ -165,7 +166,7 @@ class _AirConditionerState extends State<AirConditioner>
                         ],
                       ),
                       Text(
-                        '23 °C',
+                        '${_value.toInt()} °C',
                         style: TextStyle(
                           color: (isActive)
                               ? Colors.white
@@ -193,22 +194,49 @@ class _AirConditionerState extends State<AirConditioner>
               ),
             ),
             Container(
-              child: Slider(
-                value: _value.toDouble(),
-                min: 1.0,
-                max: 20.0,
-                activeColor:
-                    (isActive) ? Colors.white : Color.fromRGBO(64, 191, 207, 1),
-                inactiveColor: (isActive)
-                    ? Colors.white.withAlpha(25)
-                    : Color.fromRGBO(121, 170, 224, .25),
-                onChanged: (double newValue) {
-                  setState(() {
-                    _value = newValue.round();
-                  });
-                },
-                semanticFormatterCallback: (double newValue) {
-                  return '${newValue.round()} dollars';
+              height: 40.0,
+              child: FlutterSlider(
+                handler: FlutterSliderHandler(
+                  decoration: BoxDecoration(),
+                  child: Container(
+                    height: 20.0,
+                    width: 20.0,
+                    decoration: BoxDecoration(
+                      color: (isActive)
+                          ? Colors.white
+                          : Color.fromRGBO(64, 191, 207, 1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      SmartHouse.thermometer,
+                      color: (!isActive)
+                          ? Colors.white
+                          : Color.fromRGBO(64, 191, 207, 1),
+                      size: 13,
+                    ),
+                  ),
+                ),
+                trackBar: FlutterSliderTrackBar(
+                  activeTrackBarHeight: 3.0,
+                  inactiveTrackBarHeight: 3.0,
+                  inactiveTrackBar: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.black12,
+                  ),
+                  activeTrackBar: BoxDecoration(
+                    color: (isActive)
+                        ? Colors.white
+                        : Color.fromRGBO(64, 191, 207, 1),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                tooltip: FlutterSliderTooltip(disabled: true),
+                values: [_value],
+                max: 30,
+                min: 11,
+                onDragging: (handlerIndex, lowerValue, upperValue) {
+                  _value = lowerValue;
+                  setState(() {});
                 },
               ),
             ),
