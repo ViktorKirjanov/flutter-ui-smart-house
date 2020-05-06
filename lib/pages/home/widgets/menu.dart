@@ -28,8 +28,7 @@ class _MenuState extends State<Menu> {
             decoration: new BoxDecoration(
               color: Color.fromRGBO(214, 234, 253, 1),
               borderRadius: new BorderRadius.only(
-                bottomRight: const Radius.circular(84.0),
-                topRight: const Radius.circular(84.0),
+                bottomRight: Radius.circular(widget.width / 2),
               ),
             ),
             child: Container(
