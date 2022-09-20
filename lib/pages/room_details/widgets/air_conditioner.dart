@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:smart_house/pages/room_details/widgets/reveal.dart';
 import 'package:smart_house/pages/widgets/custom_switch.dart';
 import 'package:smart_house/presentation/smart_house_icons.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class AirConditioner extends StatefulWidget {
   final String title;
@@ -51,7 +51,6 @@ class _AirConditionerState extends State<AirConditioner>
       ..addListener(() {
         setState(() {
           // The state that has changed here is the animation object’s value.
-          print("value:${_animation.value}");
         });
       });
   }
@@ -181,52 +180,28 @@ class _AirConditionerState extends State<AirConditioner>
             ),
             SizedBox(height: 20.0),
             _buildScale(),
-            Container(
-              height: 40.0,
-              child: FlutterSlider(
-                handler: FlutterSliderHandler(
-                  decoration: BoxDecoration(),
-                  child: Container(
-                    height: 20.0,
-                    width: 20.0,
-                    decoration: BoxDecoration(
-                      color: (isActive)
-                          ? Colors.white
-                          : Color.fromRGBO(64, 191, 207, 1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      SmartHouse.thermometer,
-                      color: (!isActive)
-                          ? Colors.white
-                          : Color.fromRGBO(64, 191, 207, 1),
-                      size: 13,
-                    ),
-                  ),
-                ),
-                trackBar: FlutterSliderTrackBar(
-                  activeTrackBarHeight: 3.0,
-                  inactiveTrackBarHeight: 3.0,
-                  inactiveTrackBar: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.black12,
-                  ),
-                  activeTrackBar: BoxDecoration(
-                    color: (isActive)
-                        ? Colors.white
-                        : Color.fromRGBO(64, 191, 207, 1),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                tooltip: FlutterSliderTooltip(disabled: true),
-                values: [_value],
-                max: 30,
-                min: 11,
-                onDragging: (handlerIndex, lowerValue, upperValue) {
-                  _value = lowerValue;
-                  setState(() {});
-                },
+            SfSlider(
+              min: 11.0,
+              max: 30.0,
+              value: _value,
+              showTicks: false,
+              showLabels: false,
+              enableTooltip: false,
+              minorTicksPerInterval: 1,
+              activeColor:
+                  isActive ? Colors.white : Color.fromRGBO(64, 191, 207, 1),
+              thumbIcon: Icon(
+                SmartHouse.thermometer,
+                color: (!isActive)
+                    ? Colors.white
+                    : Color.fromRGBO(64, 191, 207, 1),
+                size: 12,
               ),
+              onChanged: (dynamic value) {
+                setState(() {
+                  _value = value;
+                });
+              },
             ),
           ],
         ),

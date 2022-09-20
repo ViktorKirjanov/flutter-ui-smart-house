@@ -41,7 +41,6 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
       ..addListener(() {
         setState(() {
           // The state that has changed here is the animation object’s value.
-          print("value:${_animation.value}");
         });
       });
   }
