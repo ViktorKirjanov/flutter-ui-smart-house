@@ -10,12 +10,12 @@ class Room {
   final List<Parameter> parameters;
 
   Room({
-    @required this.name,
-    @required this.icon,
-    @required this.tab,
-    @required this.isActive,
-    @required this.image,
-    @required this.parameters,
+    required this.name,
+    required this.icon,
+    required this.tab,
+    required this.isActive,
+    required this.image,
+    required this.parameters,
   });
 }
 
@@ -25,8 +25,8 @@ class Parameter {
   final String unit;
 
   Parameter({
-    @required this.name,
-    @required this.value,
-    @required this.unit,
+    required this.name,
+    required this.value,
+    required this.unit,
   });
 }

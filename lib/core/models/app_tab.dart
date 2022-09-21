@@ -1,1 +1,1 @@
-enum AppTab { LivingRoom, Kitchen, Bedroom }
+enum AppTab { livingRoom, kitchen, bedroom }

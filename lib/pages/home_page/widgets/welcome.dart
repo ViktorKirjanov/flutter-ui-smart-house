@@ -4,18 +4,18 @@ class Welcome extends StatelessWidget {
   final double h;
   final double w;
 
-  const Welcome({Key key, this.h, this.w}) : super(key: key);
+  const Welcome({Key? key, required this.h, required this.w}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 56.0),
+      padding: const EdgeInsets.only(left: 35.0),
       width: w,
       height: h,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           SizedBox(height: 30),
           Text(
             'Sept 20, 2019',

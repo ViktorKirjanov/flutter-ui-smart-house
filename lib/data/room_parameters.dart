@@ -6,7 +6,7 @@ List<Room> rooms = [
   Room(
     name: 'Living Room',
     icon: SmartHouse.sofa,
-    tab: AppTab.LivingRoom,
+    tab: AppTab.livingRoom,
     isActive: true,
     image: 'assets/images/living_room.jpg',
     parameters: <Parameter>[
@@ -19,7 +19,7 @@ List<Room> rooms = [
   Room(
     name: 'Kitchen',
     icon: SmartHouse.fork,
-    tab: AppTab.Kitchen,
+    tab: AppTab.kitchen,
     isActive: true,
     image: 'assets/images/kitchen.jpg',
     parameters: <Parameter>[
@@ -32,7 +32,7 @@ List<Room> rooms = [
   Room(
     name: 'Bedroom',
     icon: SmartHouse.bed,
-    tab: AppTab.Bedroom,
+    tab: AppTab.bedroom,
     isActive: true,
     image: 'assets/images/bedroom.jpg',
     parameters: <Parameter>[

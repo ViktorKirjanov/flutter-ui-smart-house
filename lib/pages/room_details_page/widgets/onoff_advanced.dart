@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_house/pages/room_details/widgets/reveal.dart';
+import 'package:smart_house/pages/room_details_page/widgets/reveal.dart';
 import 'package:smart_house/pages/widgets/custom_switch.dart';
 
 class OnoffAdvanced extends StatefulWidget {
@@ -8,22 +8,21 @@ class OnoffAdvanced extends StatefulWidget {
   final IconData iconData;
 
   const OnoffAdvanced({
-    Key key,
-    @required this.isActive,
-    @required this.title,
-    @required this.iconData,
+    Key? key,
+    required this.isActive,
+    required this.title,
+    required this.iconData,
   }) : super(key: key);
 
   @override
-  _OnoffAdvancedState createState() => _OnoffAdvancedState();
+  OnoffAdvancedState createState() => OnoffAdvancedState();
 }
 
-class _OnoffAdvancedState extends State<OnoffAdvanced>
+class OnoffAdvancedState extends State<OnoffAdvanced>
     with SingleTickerProviderStateMixin {
-  Animation<double> _animation;
-  AnimationController _controller;
-
-  bool _deviceStatuce;
+  late Animation<double> _animation;
+  late AnimationController _controller;
+  late bool _deviceStatuce;
 
   @override
   void initState() {
@@ -51,8 +50,8 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
       children: <Widget>[
         Container(
           height: 130,
-          decoration: new BoxDecoration(
-            borderRadius: new BorderRadius.all(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
               Radius.circular(20.0),
             ),
             boxShadow: [
@@ -70,8 +69,8 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
               Reveal(
                 revealPersent: _animation.value,
                 direction: (!_deviceStatuce)
-                    ? Direction.LeftToRight
-                    : Direction.RightToLeft,
+                    ? Direction.leftToRight
+                    : Direction.rightToLeft,
                 child: _buildDeviceStatus(!_deviceStatuce),
               ),
               Positioned(
@@ -81,8 +80,8 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
                   initValue: _deviceStatuce,
                   width: 32,
                   height: 18,
-                  onColor: Color.fromRGBO(9, 119, 132, 1),
-                  offColor: Color.fromRGBO(121, 170, 224, 1),
+                  onColor: const Color.fromRGBO(9, 119, 132, 1),
+                  offColor: const Color.fromRGBO(121, 170, 224, 1),
                   offset: 2.0,
                   action: () {
                     _controller.forward();
@@ -98,18 +97,19 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
 
   Widget _buildDeviceStatus(bool isActive) {
     return Container(
-      decoration: new BoxDecoration(
-        color: (isActive) ? Color.fromRGBO(64, 191, 207, 1) : Colors.white,
-        borderRadius: new BorderRadius.all(
+      decoration: BoxDecoration(
+        color:
+            (isActive) ? const Color.fromRGBO(64, 191, 207, 1) : Colors.white,
+        borderRadius: const BorderRadius.all(
           Radius.circular(20.0),
         ),
         border: Border.all(
-          color: Color.fromRGBO(208, 226, 242, 1),
+          color: const Color.fromRGBO(208, 226, 242, 1),
           width: 1,
         ),
       ),
       child: Container(
-        padding: EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 0.0),
         child: Row(
           children: [
             Column(
@@ -119,27 +119,27 @@ class _OnoffAdvancedState extends State<OnoffAdvanced>
                   widget.iconData,
                   color: (isActive)
                       ? Colors.white
-                      : Color.fromRGBO(105, 144, 186, 1),
+                      : const Color.fromRGBO(105, 144, 186, 1),
                   size: 36.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
-                SizedBox(height: 15.0),
+                const SizedBox(height: 15.0),
                 Text(
                   widget.title,
                   style: TextStyle(
                     color: (!isActive)
-                        ? Color.fromRGBO(189, 207, 227, 1.0)
+                        ? const Color.fromRGBO(189, 207, 227, 1.0)
                         : Colors.white.withOpacity(.5),
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 5.0),
+                const SizedBox(height: 5.0),
                 Text(
                   (isActive) ? "ON" : "OFF",
                   style: TextStyle(
                     color: (isActive)
                         ? Colors.white
-                        : Color.fromRGBO(105, 144, 186, 1),
+                        : const Color.fromRGBO(105, 144, 186, 1),
                     fontSize: 18,
                   ),
                 )

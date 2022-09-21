@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-enum Direction { LeftToRight, RightToLeft }
+enum Direction { leftToRight, rightToLeft }
 
 class Reveal extends StatelessWidget {
   final double revealPersent;
@@ -10,10 +10,10 @@ class Reveal extends StatelessWidget {
   final Widget child;
 
   const Reveal({
-    Key key,
-    this.revealPersent,
-    this.direction,
-    this.child,
+    Key? key,
+    required this.revealPersent,
+    required this.direction,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,6 @@ class CircleRevealClipper extends CustomClipper<Rect> {
   // start from bottom center
   // @override
   // Rect getClip(Size size) {
-  //   // print(size);
   //   final epicenter = Offset(size.width / 2, size.height * .9);
 
   //   // final epicenter = Offset(0, 0);
@@ -43,7 +42,6 @@ class CircleRevealClipper extends CustomClipper<Rect> {
 
   //   final radius = distanceToCorner * revealPercent;
   //   final diameter = 2 * radius;
-  //   // print("diameter $diameter");
   //   return Rect.fromLTWH(
   //       epicenter.dx - radius, epicenter.dy - radius, diameter, diameter);
   //   // return Rect.fromLTWH(-radius, -radius, diameter, diameter);
@@ -52,10 +50,10 @@ class CircleRevealClipper extends CustomClipper<Rect> {
   // start from left top
   @override
   Rect getClip(Size size) {
-    Offset epicenter;
-    if (direction == Direction.LeftToRight) {
-      epicenter = Offset(1.0, 1.0);
-    } else if (direction == Direction.RightToLeft) {
+    late Offset epicenter;
+    if (direction == Direction.leftToRight) {
+      epicenter = const Offset(1.0, 1.0);
+    } else if (direction == Direction.rightToLeft) {
       epicenter = Offset(size.width, 1.0);
     }
     final distanceToCorner =

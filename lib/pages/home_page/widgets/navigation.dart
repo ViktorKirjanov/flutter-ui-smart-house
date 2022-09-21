@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_house/core/blocs/tabs/tabs_bloc.dart';
 import 'package:smart_house/core/models/app_tab.dart';
 import 'package:smart_house/core/models/room.dart';
 import 'package:smart_house/data/room_parameters.dart';
 import 'package:smart_house/pages/widgets/dot.dart';
 
+import '../../../core/blocs/cubit/tabs_cubit.dart';
+
 class Navigation extends StatelessWidget {
+  const Navigation({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TabsBloc, AppTab>(
-      builder: (context, state) {
+    return BlocBuilder<TabsCubit, AppTab>(
+      builder: (_, state) {
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 50.0),
+          padding: const EdgeInsets.symmetric(vertical: 50.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: rooms
@@ -23,10 +26,10 @@ class Navigation extends StatelessWidget {
                     room: room.name,
                     icon: room.icon,
                     active: room.tab ==
-                        Provider.of<TabsBloc>(context, listen: false).state,
-                    action: () => BlocProvider.of<TabsBloc>(context).add(
-                      UpdateTab(room.tab),
-                    ),
+                        Provider.of<TabsCubit>(context, listen: false).state,
+                    action: () {
+                      BlocProvider.of<TabsCubit>(context).updateTab(room.tab);
+                    },
                   ),
                 )
                 .toList(),
@@ -37,9 +40,9 @@ class Navigation extends StatelessWidget {
   }
 
   Widget _buildNavigationItem({
-    @required String room,
-    @required IconData icon,
-    @required Function action,
+    required String room,
+    required IconData icon,
+    required Function action,
     bool active = false,
   }) {
     return GestureDetector(
@@ -55,7 +58,7 @@ class Navigation extends StatelessWidget {
               size: 32.0,
               semanticLabel: 'Text to announce in accessibility modes',
             ),
-            SizedBox(width: 10.0),
+            const SizedBox(width: 10.0),
             RotatedBox(
               quarterTurns: -1,
               child: Text(
@@ -65,14 +68,12 @@ class Navigation extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 10.0),
-            (active) ? Dot(size: 8.0) : SizedBox(width: 8.0),
+            const SizedBox(width: 10.0),
+            (active) ? const Dot(size: 8.0) : const SizedBox(width: 8.0),
           ],
         ),
       ),
-      onTap: () {
-        action();
-      },
+      onTap: () => action(),
     );
   }
 }

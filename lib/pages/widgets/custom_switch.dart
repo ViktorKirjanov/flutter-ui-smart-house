@@ -12,16 +12,16 @@ class CustomSwitch extends StatefulWidget {
   final Function action;
 
   const CustomSwitch({
-    Key key,
-    @required this.initValue,
-    @required this.width,
-    @required this.height,
-    @required this.onColor,
-    @required this.offColor,
+    Key? key,
+    required this.initValue,
+    required this.width,
+    required this.height,
+    required this.onColor,
+    required this.offColor,
     this.offset = 0.0,
     this.borderRadius = 100,
     this.duration = 100,
-    this.action,
+    required this.action,
   }) : super(key: key);
 
   @override
@@ -29,9 +29,9 @@ class CustomSwitch extends StatefulWidget {
 }
 
 class CustoSwitchState extends State<CustomSwitch> {
-  Color _switchColor;
-  bool _isActive;
-  double _switchPosition;
+  late Color _switchColor;
+  late bool _isActive;
+  late double _switchPosition;
 
   @override
   @override
@@ -53,7 +53,7 @@ class CustoSwitchState extends State<CustomSwitch> {
     return Stack(
       children: <Widget>[
         GestureDetector(
-          child: Container(
+          child: SizedBox(
             width: widget.width,
             child: Stack(
               children: <Widget>[
@@ -100,7 +100,7 @@ class CustoSwitchState extends State<CustomSwitch> {
                 _switchPosition = -1.0;
               }
             });
-            if (widget.action != null) widget.action();
+            widget.action();
           },
         ),
       ],
