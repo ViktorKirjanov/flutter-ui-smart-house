@@ -28,6 +28,7 @@ dependencies:
   equatable: ^2.0.5
   provider: ^6.0.3
   syncfusion_flutter_sliders: ^20.2.49
+  simple_ripple_animation: ^0.0.3
 
 dev_dependencies:
   flutter_test:

@@ -45,35 +45,43 @@ class Navigation extends StatelessWidget {
     required Function action,
     bool active = false,
   }) {
-    return GestureDetector(
-      child: Container(
-        height: 100.0,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Material(
         color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              icon,
-              color: Color.fromRGBO(94, 124, 154, active ? 1 : .4),
-              size: 32.0,
-              semanticLabel: 'Text to announce in accessibility modes',
-            ),
-            const SizedBox(width: 10.0),
-            RotatedBox(
-              quarterTurns: -1,
-              child: Text(
-                room,
-                style: TextStyle(
-                  color: Color.fromRGBO(94, 124, 154, active ? 1 : .4),
+        child: InkWell(
+          highlightColor: const Color.fromRGBO(144, 175, 208, .2),
+          splashColor: const Color.fromRGBO(144, 175, 208, .5),
+          customBorder: const CircleBorder(),
+          child: SizedBox(
+            height: 100.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  icon,
+                  color: Color.fromRGBO(94, 124, 154, active ? 1 : .5),
+                  size: 32.0,
+                  semanticLabel: 'Text to announce in accessibility modes',
                 ),
-              ),
+                const SizedBox(width: 10.0),
+                RotatedBox(
+                  quarterTurns: -1,
+                  child: Text(
+                    room,
+                    style: TextStyle(
+                      color: Color.fromRGBO(94, 124, 154, active ? 1 : .5),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10.0),
+                (active) ? const Dot(size: 8.0) : const SizedBox(width: 8.0),
+              ],
             ),
-            const SizedBox(width: 10.0),
-            (active) ? const Dot(size: 8.0) : const SizedBox(width: 8.0),
-          ],
+          ),
+          onTap: () => action(),
         ),
       ),
-      onTap: () => action(),
     );
   }
 }
